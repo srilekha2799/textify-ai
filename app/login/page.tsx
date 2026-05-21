@@ -45,6 +45,7 @@ export default function LoginPage() {
 
         options: {
           redirectTo:"https://textify-ai-i7t2-omzgbrz6d-srilekhagondi2007-7842s-projects.vercel.app/auth/callback",
+          skipBrowserRedirect: false,
         }
       });
     };
