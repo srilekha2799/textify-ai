@@ -1,154 +1,124 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+
 import { useRouter } from "next/navigation";
+
+import { supabase } from "@/lib/supabase";
 
 export default function Home() {
 
   const router = useRouter();
 
-  const [showText, setShowText] =
-    useState(false);
-
   useEffect(() => {
 
-    // Reveal animation
-    const revealTimer =
-      setTimeout(() => {
+    const checkUser =
+      async () => {
 
-        setShowText(true);
+        const {
+          data: { session },
+        } =
+          await supabase.auth.getSession();
 
-      }, 700);
+        setTimeout(() => {
 
-    // Redirect
-    const timer = setTimeout(() => {
+          if (session) {
 
-      router.push("/login");
+            router.push("/homepage");
 
-    }, 3200);
+          } else {
 
-    return () => {
+            router.push("/login");
+          }
 
-      clearTimeout(timer);
+        }, 2500);
+      };
 
-      clearTimeout(revealTimer);
-    };
+    checkUser();
 
   }, [router]);
 
   return (
 
-    <main
-      className="
-      flex
-      min-h-screen
-      items-center
-      justify-center
-      overflow-hidden
-      bg-[#EEF4FF]
-
-      dark:bg-[#020817]
-    "
-    >
+    <main className="flex min-h-screen items-center justify-center bg-background overflow-hidden">
 
       <div className="flex flex-col items-center">
 
-        {/* Logo */}
+        {/* Animated Logo */}
+
         <div
           className="
-          relative
+          mb-6
           flex
+          h-28
+          w-28
           items-center
           justify-center
+          rounded-full
+
+          bg-gradient-to-br
+          from-[#5B7CFA]
+          via-[#7C4DFF]
+          to-[#233B95]
+
+          shadow-2xl
+
+          animate-pulse
         "
         >
 
-          {/* T Letter */}
-          <div
+          <span
             className="
-            z-10
-            text-8xl
+            text-5xl
             font-extrabold
-            tracking-tight
-
-            bg-gradient-to-r
-            from-[#5B7CFA]
-            via-[#7C5CFF]
-            to-[#38BDF8]
-
-            bg-clip-text
-            text-transparent
-
-            drop-shadow-[0_0_25px_rgba(91,124,250,0.45)]
-
-            animate-pulse
+            text-white
           "
           >
             T
-          </div>
+          </span>
 
-          {/* Reveal Text */}
-          <div
-            className={`
-            overflow-hidden
-            transition-all
-            duration-1000
-            ease-in-out
-
-            ${
-              showText
-                ? "max-w-[500px] opacity-100 ml-2"
-                : "max-w-0 opacity-0 ml-0"
-            }
-          `}
-          >
-
-            <h1
-              className="
-              whitespace-nowrap
-              text-7xl
-              font-extrabold
-              tracking-tight
-
-              bg-gradient-to-r
-              from-[#5B7CFA]
-              via-[#7C5CFF]
-              to-[#38BDF8]
-
-              bg-clip-text
-              text-transparent
-
-              drop-shadow-[0_0_25px_rgba(91,124,250,0.35)]
-            "
-            >
-              extify
-            </h1>
-
-          </div>
         </div>
 
+        {/* Animated Textify */}
+
+        <h1
+          className="
+          overflow-hidden
+          whitespace-nowrap
+
+          border-r-4
+          border-[#5B7CFA]
+
+          text-6xl
+          font-extrabold
+
+          bg-gradient-to-r
+          from-[#5B7CFA]
+          via-[#7C4DFF]
+          to-[#233B95]
+
+          bg-clip-text
+          text-transparent
+
+          animate-typing
+        "
+        >
+          Textify
+        </h1>
+
         {/* Tagline */}
+
         <p
-          className={`
-          mt-5
-          text-lg
+          className="
+          mt-4
+          text-xl
           font-medium
-          tracking-wide
           text-[#233B95]
 
-          transition-all
-          duration-1000
-
           dark:text-[#8FB3FF]
-
-          ${
-            showText
-              ? "translate-y-0 opacity-100"
-              : "translate-y-4 opacity-0"
-          }
-        `}
+        "
         >
-          simplify smarter ✨
+          to simplify text
         </p>
 
       </div>
