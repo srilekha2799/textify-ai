@@ -12,39 +12,34 @@ export default function AuthCallback() {
 
   useEffect(() => {
 
-    const handleAuth = async () => {
+    const handleAuth =
+      async () => {
 
-      // Wait a little for session restore
-      await new Promise((resolve) =>
-        setTimeout(resolve, 2000)
-      );
+        // Wait for Supabase
+        await supabase.auth.getSession();
 
-      const {
-        data: { session },
-        error,
-      } = await supabase.auth.getSession();
+        setTimeout(async () => {
 
-      console.log("SESSION:", session);
+          const {
+            data: { session },
+          } =
+            await supabase.auth.getSession();
 
-      if (error) {
+          if (session) {
 
-        console.log(error);
+            router.replace(
+              "/homepage"
+            );
 
-        router.replace("/login");
+          } else {
 
-        return;
-      }
+            router.replace(
+              "/login"
+            );
+          }
 
-      // User logged in
-      if (session?.user) {
-
-        router.replace("/homepage");
-
-      } else {
-
-        router.replace("/login");
-      }
-    };
+        }, 2000);
+      };
 
     handleAuth();
 
@@ -54,17 +49,11 @@ export default function AuthCallback() {
 
     <main className="flex min-h-screen items-center justify-center bg-background">
 
-      <div className="flex flex-col items-center gap-4">
+      <h1 className="text-2xl font-bold text-primary">
 
-        <div className="h-12 w-12 animate-spin rounded-full border-4 border-[#5B7CFA] border-t-transparent"></div>
+        Signing you in...
 
-        <h1 className="text-2xl font-bold text-primary">
-
-          Signing you in...
-
-        </h1>
-
-      </div>
+      </h1>
 
     </main>
   );
