@@ -44,7 +44,7 @@ export default function LoginPage() {
         provider: "google",
 
         options: {
-          redirectTo: "http://localhost:3000/homepage",
+          redirectTo:"https://textify-ai-i7t2-omzgbrz6d-srilekhagondi2007-7842s-projects.vercel.app/auth/callback",
         }
       });
     };
