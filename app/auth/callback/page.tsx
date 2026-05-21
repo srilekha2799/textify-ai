@@ -12,46 +12,41 @@ export default function AuthCallback() {
 
   useEffect(() => {
 
-    const handleAuth =
+    const handleLogin =
       async () => {
 
-        // Wait for Supabase
-        await supabase.auth.getSession();
+        const {
+          data,
+        } =
+          await supabase.auth.getSession();
 
-        setTimeout(async () => {
+        console.log(data);
 
-          const {
-            data: { session },
-          } =
-            await supabase.auth.getSession();
+        if (data.session) {
 
-          if (session) {
+          router.replace(
+            "/homepage"
+          );
 
-            router.replace(
-              "/homepage"
-            );
+        } else {
 
-          } else {
-
-            router.replace(
-              "/login"
-            );
-          }
-
-        }, 2000);
+          router.replace(
+            "/login"
+          );
+        }
       };
 
-    handleAuth();
+    handleLogin();
 
   }, [router]);
 
   return (
 
-    <main className="flex min-h-screen items-center justify-center bg-background">
+    <main className="flex min-h-screen items-center justify-center">
 
-      <h1 className="text-2xl font-bold text-primary">
+      <h1 className="text-2xl font-bold">
 
-        Signing you in...
+        Signing in...
 
       </h1>
 
