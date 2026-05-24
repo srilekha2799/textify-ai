@@ -75,7 +75,7 @@ export default function SignupPage() {
       await supabase.auth.signInWithOAuth({
         provider: "google",
         options: {
-          redirectTo: "https://textify-ai-i7t2-omzgbrz6d-srilekhagondi2007-7842s-projects.vercel.app/auth/callback",
+          redirectTo: "https://textify-ai-eight.vercel.app/auth/callback",
           skipBrowserRedirect: false,
         }
       });
