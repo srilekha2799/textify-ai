@@ -1,6 +1,11 @@
-import { NextRequest, NextResponse } from "next/server";
+import {
+  NextRequest,
+  NextResponse,
+} from "next/server";
 
-import pdfParse from "pdf-parse";
+import fs from "fs";
+import path from "path";
+import PDFParser from "pdf2json";
 
 export const runtime = "nodejs";
 
@@ -29,19 +34,66 @@ export async function POST(
       );
     }
 
-    // Convert file to buffer
     const bytes =
       await file.arrayBuffer();
 
     const buffer =
       Buffer.from(bytes);
 
-    // Parse PDF
-    const pdfData =
-      await pdfParse(buffer);
+    // Temp file path
+    const tempPath =
+      path.join(
+        process.cwd(),
+        "temp.pdf"
+      );
+
+    fs.writeFileSync(
+      tempPath,
+      buffer
+    );
+
+    const pdfParser =
+      new PDFParser();
+
+    const text =
+      await new Promise<string>(
+        (
+          resolve,
+          reject
+        ) => {
+
+          pdfParser.on(
+            "pdfParser_dataError",
+            (errData) => {
+
+              reject(
+                errData.parserError
+              );
+            }
+          );
+
+          pdfParser.on(
+            "pdfParser_dataReady",
+            () => {
+
+              const rawText =
+                pdfParser.getRawTextContent();
+
+              resolve(rawText);
+            }
+          );
+
+          pdfParser.loadPDF(
+            tempPath
+          );
+        }
+      );
+
+    // Delete temp file
+    fs.unlinkSync(tempPath);
 
     return NextResponse.json({
-      text: pdfData.text,
+      text,
     });
 
   } catch (error) {
