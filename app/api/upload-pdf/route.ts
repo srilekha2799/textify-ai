@@ -67,7 +67,9 @@ export async function POST(
             (errData) => {
 
               reject(
-                errData.parserError
+                "parserError" in errData
+                ? errData.parserError
+                : errData
               );
             }
           );
