@@ -104,7 +104,7 @@ export default function SettingsPage() {
           dark:text-white
         "
         >
-          Settings ⚙️
+          Settings
         </h1>
 
         <button
