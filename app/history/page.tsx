@@ -67,7 +67,7 @@ export default function HistoryPage() {
       className="
       min-h-screen
 
-      bg-[#EEF4FF]
+      bg-[#F4F7FF]
 
       px-4
       py-6
@@ -82,10 +82,64 @@ export default function HistoryPage() {
     "
     >
 
+      {/* BACKGROUND GLOW */}
+
+      <div
+        className="
+        pointer-events-none
+        fixed
+        inset-0
+        overflow-hidden
+      "
+      >
+
+        <div
+          className="
+          absolute
+          top-[-120px]
+          left-[-120px]
+
+          h-[320px]
+          w-[320px]
+
+          rounded-full
+
+          bg-[#7C5CFF]/10
+
+          blur-3xl
+
+          dark:bg-[#5B7CFA]/20
+        "
+        />
+
+        <div
+          className="
+          absolute
+          bottom-[-140px]
+          right-[-100px]
+
+          h-[320px]
+          w-[320px]
+
+          rounded-full
+
+          bg-[#5B7CFA]/10
+
+          blur-3xl
+
+          dark:bg-[#7C5CFF]/20
+        "
+        />
+
+      </div>
+
       {/* HEADER */}
 
       <div
         className="
+        relative
+        z-10
+
         mx-auto
         mb-8
 
@@ -105,7 +159,7 @@ export default function HistoryPage() {
 
             text-[#233B95]
 
-            dark:text-[#8FB3FF]
+            dark:text-white
 
             sm:text-4xl
           "
@@ -118,9 +172,9 @@ export default function HistoryPage() {
             mt-1
             text-sm
 
-            text-gray-500
+            text-[#6B7280]
 
-            dark:text-zinc-400
+            dark:text-[#94A3B8]
           "
           >
             Your previous simplified notes ✨
@@ -144,7 +198,7 @@ export default function HistoryPage() {
 
           bg-gradient-to-r
           from-[#5B7CFA]
-          to-[#4A68E8]
+          to-[#7C5CFF]
 
           px-5
           py-3
@@ -153,9 +207,11 @@ export default function HistoryPage() {
           font-semibold
           text-white
 
-          shadow-lg
+          shadow-[0_8px_25px_rgba(91,124,250,0.35)]
 
           transition-all
+          duration-300
+
           hover:scale-105
         "
         >
@@ -172,6 +228,9 @@ export default function HistoryPage() {
 
       <section
         className="
+        relative
+        z-10
+
         mx-auto
         flex
         max-w-5xl
@@ -186,24 +245,30 @@ export default function HistoryPage() {
 
           <div
             className="
-            rounded-3xl
+            rounded-[30px]
 
-            bg-white
+            border
+            border-[#DCE6FF]
+
+            bg-white/90
             p-8
 
             text-center
 
-            shadow-xl
+            shadow-[0_10px_40px_rgba(91,124,250,0.12)]
 
-            dark:bg-[#0F172A]
+            backdrop-blur-xl
+
+            dark:border-white/10
+            dark:bg-[#0F172A]/80
           "
           >
 
             <p
               className="
-              text-gray-500
+              text-[#6B7280]
 
-              dark:text-zinc-400
+              dark:text-[#94A3B8]
             "
             >
               Loading history...
@@ -217,24 +282,30 @@ export default function HistoryPage() {
 
           <div
             className="
-            rounded-3xl
+            rounded-[30px]
 
-            bg-white
+            border
+            border-[#DCE6FF]
+
+            bg-white/90
             p-8
 
             text-center
 
-            shadow-xl
+            shadow-[0_10px_40px_rgba(91,124,250,0.12)]
 
-            dark:bg-[#0F172A]
+            backdrop-blur-xl
+
+            dark:border-white/10
+            dark:bg-[#0F172A]/80
           "
           >
 
             <p
               className="
-              text-gray-500
+              text-[#6B7280]
 
-              dark:text-zinc-400
+              dark:text-[#94A3B8]
             "
             >
               No history found.
@@ -261,22 +332,24 @@ export default function HistoryPage() {
               rounded-[30px]
 
               border
-              border-gray-200
+              border-[#DCE6FF]
 
-              bg-white
+              bg-white/90
 
               p-6
 
-              shadow-lg
+              shadow-[0_10px_35px_rgba(91,124,250,0.10)]
+
+              backdrop-blur-xl
 
               transition-all
               duration-300
 
               hover:-translate-y-1
-              hover:shadow-2xl
+              hover:shadow-[0_15px_45px_rgba(91,124,250,0.20)]
 
-              dark:border-zinc-800
-              dark:bg-[#0F172A]
+              dark:border-white/10
+              dark:bg-[#0F172A]/80
             "
             >
 
@@ -303,9 +376,9 @@ export default function HistoryPage() {
                   className="
                   text-sm
 
-                  text-gray-400
+                  text-[#94A3B8]
 
-                  dark:text-zinc-500
+                  dark:text-[#64748B]
                 "
                 >
                   {new Date(
@@ -328,7 +401,7 @@ export default function HistoryPage() {
 
                   text-[#233B95]
 
-                  dark:text-[#8FB3FF]
+                  dark:text-white
                 "
                 >
                   Original Text
@@ -340,9 +413,9 @@ export default function HistoryPage() {
 
                   leading-7
 
-                  text-gray-700
+                  text-[#475569]
 
-                  dark:text-gray-300
+                  dark:text-[#CBD5E1]
                 "
                 >
                   {item.input_text}
@@ -367,7 +440,7 @@ export default function HistoryPage() {
                   <Sparkles
                     size={18}
                     className="
-                    text-[#5B7CFA]
+                    text-[#7C5CFF]
                   "
                   />
 
@@ -378,7 +451,7 @@ export default function HistoryPage() {
 
                     text-[#233B95]
 
-                    dark:text-[#8FB3FF]
+                    dark:text-white
                   "
                   >
                     Simplified Notes
@@ -393,9 +466,9 @@ export default function HistoryPage() {
 
                   leading-7
 
-                  text-gray-700
+                  text-[#475569]
 
-                  dark:text-gray-300
+                  dark:text-[#CBD5E1]
                 "
                 >
                   {item.output_text}
@@ -416,9 +489,14 @@ export default function HistoryPage() {
                 <span
                   className="
                   text-sm
-                  font-medium
+                  font-semibold
 
                   text-[#5B7CFA]
+
+                  transition-all
+                  duration-300
+
+                  hover:text-[#7C5CFF]
                 "
                 >
                   Tap to view full →

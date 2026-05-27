@@ -65,19 +65,16 @@ export default function SignupPage() {
 
       setLoading(true);
 
-      // Clear old session
       await supabase.auth.signOut();
-
-      // Google verifies automatically
-      // If account is real,
-      // Supabase creates user automatically
 
       await supabase.auth.signInWithOAuth({
         provider: "google",
         options: {
-          redirectTo: "https://textify-ai-eight.vercel.app/auth/callback",
+          redirectTo:
+            "https://textify-ai-eight.vercel.app/auth/callback",
+
           skipBrowserRedirect: false,
-        }
+        },
       });
 
       setLoading(false);
@@ -91,13 +88,14 @@ export default function SignupPage() {
       flex
       items-center
       justify-center
-      bg-gradient-to-br
-      from-blue-50
-      via-white
-      to-indigo-100
-      dark:from-[#020617]
-      dark:via-[#0B1120]
-      dark:to-[#172554]
+
+      bg-[#EEF4FF]
+
+      transition-all
+      duration-300
+
+      dark:bg-[#020817]
+
       px-4
     "
     >
@@ -106,16 +104,23 @@ export default function SignupPage() {
         className="
         w-full
         max-w-md
-        rounded-3xl
+
+        rounded-[32px]
+
         border
         border-gray-200
+
         bg-white
+
         p-8
+
         shadow-2xl
 
-        dark:border-white/20
-        dark:bg-white/10
-        dark:backdrop-blur-xl
+        transition-all
+        duration-300
+
+        dark:border-zinc-800
+        dark:bg-[#0F172A]
       "
       >
 
@@ -125,20 +130,25 @@ export default function SignupPage() {
           <h1
             className="
             text-4xl
-            font-bold
-            text-blue-900
-            dark:text-white
+            font-extrabold
+
+            text-[#233B95]
+
+            dark:text-[#8FB3FF]
           "
           >
-            Create Account ✨
+            Create Account
           </h1>
 
           <p
             className="
             mt-2
+
             text-sm
+
             text-gray-500
-            dark:text-gray-400
+
+            dark:text-zinc-400
           "
           >
             Join Textify AI and
@@ -154,28 +164,40 @@ export default function SignupPage() {
           <input
             type="email"
             placeholder="Enter your email"
-            className="
-              h-12
-              w-full
-              rounded-xl
-              border
-              border-gray-300
-              bg-gray-100
-              px-4
-              text-black
-              outline-none
-              transition-all
-              placeholder:text-gray-500
-              focus:border-[#4F6EF7]
-              focus:ring-2
-              focus:ring-[#4F6EF7]/30
 
-              dark:border-white/20
-              dark:bg-white/5
-              dark:text-white
-              dark:placeholder:text-gray-400
-            "
+            className="
+            h-12
+            w-full
+
+            rounded-2xl
+
+            border
+            border-gray-300
+
+            bg-[#F8FAFC]
+
+            px-4
+
+            text-gray-800
+
+            outline-none
+
+            transition-all
+
+            placeholder:text-gray-400
+
+            focus:border-[#5B7CFA]
+            focus:ring-4
+            focus:ring-[#5B7CFA]/20
+
+            dark:border-zinc-700
+            dark:bg-[#111827]
+            dark:text-white
+            dark:placeholder:text-zinc-500
+          "
+
             value={email}
+
             onChange={(e) =>
               setEmail(
                 e.target.value
@@ -187,28 +209,40 @@ export default function SignupPage() {
           <input
             type="password"
             placeholder="Create password"
-            className="
-              h-12
-              w-full
-              rounded-xl
-              border
-              border-gray-300
-              bg-gray-100
-              px-4
-              text-black
-              outline-none
-              transition-all
-              placeholder:text-gray-500
-              focus:border-[#4F6EF7]
-              focus:ring-2
-              focus:ring-[#4F6EF7]/30
 
-              dark:border-white/20
-              dark:bg-white/5
-              dark:text-white
-              dark:placeholder:text-gray-400
-            "
+            className="
+            h-12
+            w-full
+
+            rounded-2xl
+
+            border
+            border-gray-300
+
+            bg-[#F8FAFC]
+
+            px-4
+
+            text-gray-800
+
+            outline-none
+
+            transition-all
+
+            placeholder:text-gray-400
+
+            focus:border-[#5B7CFA]
+            focus:ring-4
+            focus:ring-[#5B7CFA]/20
+
+            dark:border-zinc-700
+            dark:bg-[#111827]
+            dark:text-white
+            dark:placeholder:text-zinc-500
+          "
+
             value={password}
+
             onChange={(e) =>
               setPassword(
                 e.target.value
@@ -220,28 +254,40 @@ export default function SignupPage() {
           <input
             type="password"
             placeholder="Confirm password"
-            className="
-              h-12
-              w-full
-              rounded-xl
-              border
-              border-gray-300
-              bg-gray-100
-              px-4
-              text-black
-              outline-none
-              transition-all
-              placeholder:text-gray-500
-              focus:border-[#4F6EF7]
-              focus:ring-2
-              focus:ring-[#4F6EF7]/30
 
-              dark:border-white/20
-              dark:bg-white/5
-              dark:text-white
-              dark:placeholder:text-gray-400
-            "
+            className="
+            h-12
+            w-full
+
+            rounded-2xl
+
+            border
+            border-gray-300
+
+            bg-[#F8FAFC]
+
+            px-4
+
+            text-gray-800
+
+            outline-none
+
+            transition-all
+
+            placeholder:text-gray-400
+
+            focus:border-[#5B7CFA]
+            focus:ring-4
+            focus:ring-[#5B7CFA]/20
+
+            dark:border-zinc-700
+            dark:bg-[#111827]
+            dark:text-white
+            dark:placeholder:text-zinc-500
+          "
+
             value={confirmPassword}
+
             onChange={(e) =>
               setConfirmPassword(
                 e.target.value
@@ -252,23 +298,36 @@ export default function SignupPage() {
           {/* Signup Button */}
           <button
             onClick={handleSignup}
+
             disabled={loading}
+
             className="
-              w-full
-              rounded-xl
-              bg-[#4F6EF7]
-              py-3
-              text-lg
-              font-semibold
-              text-white
-              transition-all
-              duration-300
-              hover:scale-[1.02]
-              hover:bg-[#3D5CE6]
-              hover:shadow-lg
-              hover:shadow-blue-500/30
-              disabled:opacity-70
-            "
+            w-full
+
+            rounded-2xl
+
+            bg-gradient-to-r
+            from-[#5B7CFA]
+            to-[#6D8BFF]
+
+            py-3
+
+            text-lg
+            font-semibold
+            text-white
+
+            transition-all
+            duration-300
+
+            hover:scale-[1.02]
+            hover:from-[#4A68E8]
+            hover:to-[#5B7CFA]
+
+            hover:shadow-lg
+            hover:shadow-[#5B7CFA]/30
+
+            disabled:opacity-70
+          "
           >
 
             {loading
@@ -291,16 +350,20 @@ export default function SignupPage() {
               className="
               h-px
               flex-1
+
               bg-gray-300
-              dark:bg-white/20
+
+              dark:bg-zinc-700
             "
             ></div>
 
             <span
               className="
               text-sm
+
               text-gray-500
-              dark:text-gray-400
+
+              dark:text-zinc-500
             "
             >
               OR
@@ -310,8 +373,10 @@ export default function SignupPage() {
               className="
               h-px
               flex-1
+
               bg-gray-300
-              dark:bg-white/20
+
+              dark:bg-zinc-700
             "
             ></div>
 
@@ -320,28 +385,40 @@ export default function SignupPage() {
           {/* Google Signup */}
           <button
             onClick={handleGoogleSignup}
+
             disabled={loading}
+
             className="
-              flex
-              h-12
-              w-full
-              items-center
-              justify-center
-              gap-3
-              rounded-xl
-              border
-              border-gray-300
-              bg-white
-              font-medium
-              text-black
-              transition-all
-              hover:bg-gray-100
+            flex
+            h-12
+            w-full
 
-              dark:border-white/20
-              dark:bg-white
+            items-center
+            justify-center
+            gap-3
 
-              disabled:opacity-70
-            "
+            rounded-2xl
+
+            border
+            border-gray-300
+
+            bg-white
+
+            font-medium
+            text-gray-700
+
+            transition-all
+
+            hover:bg-gray-100
+            hover:scale-[1.01]
+
+            dark:border-zinc-700
+            dark:bg-[#111827]
+            dark:text-white
+            dark:hover:bg-zinc-800
+
+            disabled:opacity-70
+          "
           >
 
             <FcGoogle className="text-2xl" />
@@ -356,10 +433,13 @@ export default function SignupPage() {
         <p
           className="
           mt-6
+
           text-center
           text-sm
+
           text-gray-500
-          dark:text-gray-400
+
+          dark:text-zinc-400
         "
         >
 
@@ -367,12 +447,16 @@ export default function SignupPage() {
 
           <Link
             href="/login"
+
             className="
-              font-semibold
-              text-[#4F6EF7]
-              hover:underline
-              dark:text-[#7EA6FF]
-            "
+            font-semibold
+
+            text-[#5B7CFA]
+
+            hover:underline
+
+            dark:text-[#8FB3FF]
+          "
           >
             Login
           </Link>

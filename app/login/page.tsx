@@ -44,7 +44,9 @@ export default function LoginPage() {
         provider: "google",
 
         options: {
-          redirectTo:"https://textify-ai-eight.vercel.app/auth/callback",
+          redirectTo:
+            "https://textify-ai-eight.vercel.app/auth/callback",
+
           skipBrowserRedirect: false,
         }
       });
@@ -88,30 +90,88 @@ export default function LoginPage() {
       flex
       items-center
       justify-center
-      bg-gradient-to-br
-      from-blue-50
-      via-white
-      to-indigo-100
-      dark:from-[#020617]
-      dark:via-[#0B1120]
-      dark:to-[#172554]
+
+      bg-[#F4F7FF]
+      dark:bg-[#020817]
+
       px-4
+      transition-colors
+      duration-300
     "
     >
 
+      {/* Glow */}
       <div
         className="
+        absolute
+        inset-0
+        overflow-hidden
+        pointer-events-none
+      "
+      >
+
+        <div
+          className="
+          absolute
+          top-[-120px]
+          left-[-100px]
+
+          h-[320px]
+          w-[320px]
+
+          rounded-full
+          bg-[#7C5CFF]/10
+          blur-3xl
+
+          dark:bg-[#5B7CFA]/20
+        "
+        />
+
+        <div
+          className="
+          absolute
+          bottom-[-140px]
+          right-[-100px]
+
+          h-[320px]
+          w-[320px]
+
+          rounded-full
+          bg-[#5B7CFA]/10
+          blur-3xl
+
+          dark:bg-[#7C5CFF]/20
+        "
+        />
+
+      </div>
+
+      {/* Card */}
+      <div
+        className="
+        relative
+        z-10
+
         w-full
         max-w-md
-        rounded-3xl
+
+        rounded-[32px]
+
         border
-        border-gray-200
-        bg-white
+        border-[#DCE6FF]
+
+        bg-white/90
         p-8
-        shadow-2xl
-        dark:border-white/20
-        dark:bg-white/10
-        dark:backdrop-blur-xl
+
+        shadow-[0_10px_40px_rgba(91,124,250,0.12)]
+
+        backdrop-blur-xl
+
+        dark:border-white/10
+        dark:bg-[#0F172A]/80
+        dark:shadow-[0_10px_40px_rgba(0,0,0,0.45)]
+
+        transition-all
       "
       >
 
@@ -121,24 +181,27 @@ export default function LoginPage() {
           <h1
             className="
             text-4xl
-            font-bold
-            text-blue-900
+            font-extrabold
+
+            text-[#233B95]
+
             dark:text-white
           "
           >
-            Welcome Back ✨
+            Welcome Back
           </h1>
 
           <p
             className="
             mt-2
             text-sm
-            text-gray-500
-            dark:text-gray-400
+
+            text-[#6B7280]
+
+            dark:text-[#94A3B8]
           "
           >
-            Login to continue
-            simplifying smarter
+            Login to continue simplifying smarter
           </p>
 
         </div>
@@ -150,28 +213,39 @@ export default function LoginPage() {
           <input
             type="email"
             placeholder="Enter your email"
+
             className="
               h-12
               w-full
-              rounded-xl
+
+              rounded-2xl
+
               border
-              border-gray-300
-              bg-gray-100
+              border-[#D6E0FF]
+
+              bg-[#F8FAFF]
+
               px-4
-              text-black
+
+              text-[#1E293B]
+
               outline-none
               transition-all
-              placeholder:text-gray-500
-              focus:border-[#4F6EF7]
-              focus:ring-2
-              focus:ring-[#4F6EF7]/30
 
-              dark:border-white/20
-              dark:bg-white/5
+              placeholder:text-[#94A3B8]
+
+              focus:border-[#5B7CFA]
+              focus:ring-4
+              focus:ring-[#5B7CFA]/20
+
+              dark:border-white/10
+              dark:bg-[#111827]
               dark:text-white
-              dark:placeholder:text-gray-400
+              dark:placeholder:text-[#64748B]
             "
+
             value={email}
+
             onChange={(e) =>
               setEmail(
                 e.target.value
@@ -183,28 +257,39 @@ export default function LoginPage() {
           <input
             type="password"
             placeholder="Enter your password"
+
             className="
               h-12
               w-full
-              rounded-xl
+
+              rounded-2xl
+
               border
-              border-gray-300
-              bg-gray-100
+              border-[#D6E0FF]
+
+              bg-[#F8FAFF]
+
               px-4
-              text-black
+
+              text-[#1E293B]
+
               outline-none
               transition-all
-              placeholder:text-gray-500
-              focus:border-[#4F6EF7]
-              focus:ring-2
-              focus:ring-[#4F6EF7]/30
 
-              dark:border-white/20
-              dark:bg-white/5
+              placeholder:text-[#94A3B8]
+
+              focus:border-[#5B7CFA]
+              focus:ring-4
+              focus:ring-[#5B7CFA]/20
+
+              dark:border-white/10
+              dark:bg-[#111827]
               dark:text-white
-              dark:placeholder:text-gray-400
+              dark:placeholder:text-[#64748B]
             "
+
             value={password}
+
             onChange={(e) =>
               setPassword(
                 e.target.value
@@ -219,11 +304,18 @@ export default function LoginPage() {
               onClick={
                 handleForgotPassword
               }
+
               className="
                 text-sm
-                text-[#4F6EF7]
+                font-medium
+
+                text-[#5B7CFA]
+
+                transition-all
+                hover:text-[#4A68E8]
                 hover:underline
-                dark:text-[#7EA6FF]
+
+                dark:text-[#8FB3FF]
               "
             >
               Forgot Password?
@@ -234,20 +326,27 @@ export default function LoginPage() {
           {/* Login Button */}
           <button
             onClick={handleLogin}
+
             className="
               w-full
-              rounded-xl
-              bg-[#4F6EF7]
+
+              rounded-2xl
+
+              bg-gradient-to-r
+              from-[#5B7CFA]
+              to-[#7C5CFF]
+
               py-3
+
               text-lg
               font-semibold
               text-white
+
               transition-all
               duration-300
+
               hover:scale-[1.02]
-              hover:bg-[#3D5CE6]
-              hover:shadow-lg
-              hover:shadow-blue-500/30
+              hover:shadow-[0_8px_25px_rgba(91,124,250,0.45)]
             "
           >
             Login
@@ -267,16 +366,20 @@ export default function LoginPage() {
               className="
               h-px
               flex-1
-              bg-gray-300
-              dark:bg-white/20
+
+              bg-[#D6E0FF]
+
+              dark:bg-white/10
             "
-            ></div>
+            />
 
             <span
               className="
               text-sm
-              text-gray-500
-              dark:text-gray-400
+
+              text-[#94A3B8]
+
+              dark:text-[#64748B]
             "
             >
               OR
@@ -286,34 +389,47 @@ export default function LoginPage() {
               className="
               h-px
               flex-1
-              bg-gray-300
-              dark:bg-white/20
+
+              bg-[#D6E0FF]
+
+              dark:bg-white/10
             "
-            ></div>
+            />
 
           </div>
 
           {/* Google Login */}
           <button
             onClick={handleGoogleLogin}
+
             className="
               flex
               h-12
               w-full
+
               items-center
               justify-center
               gap-3
-              rounded-xl
-              border
-              border-gray-300
-              bg-white
-              font-medium
-              text-black
-              transition-all
-              hover:bg-gray-100
 
-              dark:border-white/20
-              dark:bg-white
+              rounded-2xl
+
+              border
+              border-[#D6E0FF]
+
+              bg-white
+
+              font-medium
+              text-[#1E293B]
+
+              transition-all
+
+              hover:bg-[#F8FAFF]
+              hover:scale-[1.01]
+
+              dark:border-white/10
+              dark:bg-[#111827]
+              dark:text-white
+              dark:hover:bg-[#1E293B]
             "
           >
 
@@ -331,8 +447,10 @@ export default function LoginPage() {
           mt-6
           text-center
           text-sm
-          text-gray-500
-          dark:text-gray-400
+
+          text-[#6B7280]
+
+          dark:text-[#94A3B8]
         "
         >
 
@@ -340,11 +458,17 @@ export default function LoginPage() {
 
           <Link
             href="/signup"
+
             className="
               font-semibold
-              text-[#4F6EF7]
+
+              text-[#5B7CFA]
+
+              transition-all
+              hover:text-[#4A68E8]
               hover:underline
-              dark:text-[#7EA6FF]
+
+              dark:text-[#8FB3FF]
             "
           >
             Sign Up
