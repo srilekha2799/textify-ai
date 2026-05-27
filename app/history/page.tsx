@@ -1,13 +1,25 @@
 "use client";
 
 import { useEffect, useState } from "react";
+
 import { useRouter } from "next/navigation";
+
 import { supabase } from "@/lib/supabase";
 
+import {
+  ArrowLeft,
+  Clock3,
+  Sparkles,
+} from "lucide-react";
+
 interface HistoryItem {
+
   id: string;
+
   input_text: string;
+
   output_text: string;
+
   created_at: string;
 }
 
@@ -15,66 +27,185 @@ export default function HistoryPage() {
 
   const router = useRouter();
 
-  const [history, setHistory] = useState<
-    HistoryItem[]
-  >([]);
+  const [history, setHistory] =
+    useState<HistoryItem[]>([]);
 
   const [loading, setLoading] =
     useState(true);
 
   // Fetch History
-  const fetchHistory = async () => {
+  const fetchHistory =
+    async () => {
 
-    const {
-      data,
-      error,
-    } = await supabase
-      .from("history")
-      .select("*")
-      .order("created_at", {
-        ascending: false,
-      });
+      const {
+        data,
+        error,
+      } = await supabase
+        .from("history")
+        .select("*")
+        .order("created_at", {
+          ascending: false,
+        });
 
-    if (!error && data) {
-      setHistory(data);
-    }
+      if (!error && data) {
 
-    setLoading(false);
-  };
+        setHistory(data);
+      }
+
+      setLoading(false);
+    };
 
   useEffect(() => {
+
     fetchHistory();
+
   }, []);
 
   return (
 
-    <main className="min-h-screen bg-background p-6">
+    <main
+      className="
+      min-h-screen
 
-      {/* Header */}
-      <div className="mx-auto mb-8 flex max-w-5xl items-center justify-between">
+      bg-[#EEF4FF]
 
-        <h1 className="text-4xl font-bold text-primary">
-          History
-        </h1>
+      px-4
+      py-6
+
+      transition-all
+      duration-300
+
+      dark:bg-[#020817]
+
+      sm:px-6
+      lg:px-8
+    "
+    >
+
+      {/* HEADER */}
+
+      <div
+        className="
+        mx-auto
+        mb-8
+
+        flex
+        max-w-5xl
+        items-center
+        justify-between
+      "
+      >
+
+        <div>
+
+          <h1
+            className="
+            text-3xl
+            font-extrabold
+
+            text-[#233B95]
+
+            dark:text-[#8FB3FF]
+
+            sm:text-4xl
+          "
+          >
+            History
+          </h1>
+
+          <p
+            className="
+            mt-1
+            text-sm
+
+            text-gray-500
+
+            dark:text-zinc-400
+          "
+          >
+            Your previous simplified notes ✨
+          </p>
+
+        </div>
+
+        {/* BACK BUTTON */}
 
         <button
           onClick={() =>
             router.push("/homepage")
           }
-          className="rounded-2xl bg-primary px-5 py-3 font-medium text-white hover:opacity-90"
+
+          className="
+          flex
+          items-center
+          gap-2
+
+          rounded-2xl
+
+          bg-gradient-to-r
+          from-[#5B7CFA]
+          to-[#4A68E8]
+
+          px-5
+          py-3
+
+          text-sm
+          font-semibold
+          text-white
+
+          shadow-lg
+
+          transition-all
+          hover:scale-105
+        "
         >
+
+          <ArrowLeft size={18} />
+
           Back
+
         </button>
+
       </div>
 
-      {/* Content */}
-      <section className="mx-auto flex max-w-5xl flex-col gap-5">
+      {/* CONTENT */}
+
+      <section
+        className="
+        mx-auto
+        flex
+        max-w-5xl
+        flex-col
+        gap-5
+      "
+      >
+
+        {/* LOADING */}
 
         {loading ? (
 
-          <div className="rounded-3xl bg-white p-6 text-center shadow">
+          <div
+            className="
+            rounded-3xl
 
-            <p className="text-gray-500">
+            bg-white
+            p-8
+
+            text-center
+
+            shadow-xl
+
+            dark:bg-[#0F172A]
+          "
+          >
+
+            <p
+              className="
+              text-gray-500
+
+              dark:text-zinc-400
+            "
+            >
               Loading history...
             </p>
 
@@ -82,9 +213,30 @@ export default function HistoryPage() {
 
         ) : history.length === 0 ? (
 
-          <div className="rounded-3xl bg-white p-6 text-center shadow">
+          /* EMPTY */
 
-            <p className="text-gray-500">
+          <div
+            className="
+            rounded-3xl
+
+            bg-white
+            p-8
+
+            text-center
+
+            shadow-xl
+
+            dark:bg-[#0F172A]
+          "
+          >
+
+            <p
+              className="
+              text-gray-500
+
+              dark:text-zinc-400
+            "
+            >
               No history found.
             </p>
 
@@ -96,47 +248,190 @@ export default function HistoryPage() {
 
             <div
               key={item.id}
-              className="cursor-pointer rounded-3xl bg-white p-6 shadow transition hover:scale-[1.01]"
+
+              onClick={() =>
+                router.push(
+                  `/history/${item.id}`
+                )
+              }
+
+              className="
+              cursor-pointer
+
+              rounded-[30px]
+
+              border
+              border-gray-200
+
+              bg-white
+
+              p-6
+
+              shadow-lg
+
+              transition-all
+              duration-300
+
+              hover:-translate-y-1
+              hover:shadow-2xl
+
+              dark:border-zinc-800
+              dark:bg-[#0F172A]
+            "
             >
 
-              {/* Timestamp */}
-              <p className="mb-3 text-sm text-gray-400">
+              {/* DATE */}
 
-                {new Date(
-                  item.created_at
-                ).toLocaleString()}
+              <div
+                className="
+                mb-4
 
-              </p>
+                flex
+                items-center
+                gap-2
+              "
+              >
 
-              {/* Input */}
-              <div className="mb-4">
+                <Clock3
+                  size={16}
+                  className="
+                  text-[#5B7CFA]
+                "
+                />
 
-                <h2 className="mb-2 text-lg font-semibold text-[#233B95]">
+                <p
+                  className="
+                  text-sm
+
+                  text-gray-400
+
+                  dark:text-zinc-500
+                "
+                >
+                  {new Date(
+                    item.created_at
+                  ).toLocaleString()}
+                </p>
+
+              </div>
+
+              {/* ORIGINAL */}
+
+              <div className="mb-5">
+
+                <h2
+                  className="
+                  mb-2
+
+                  text-lg
+                  font-bold
+
+                  text-[#233B95]
+
+                  dark:text-[#8FB3FF]
+                "
+                >
                   Original Text
                 </h2>
 
-                <p className="line-clamp-3 text-gray-700">
+                <p
+                  className="
+                  line-clamp-3
+
+                  leading-7
+
+                  text-gray-700
+
+                  dark:text-gray-300
+                "
+                >
                   {item.input_text}
                 </p>
 
               </div>
 
-              {/* Output */}
+              {/* SIMPLIFIED */}
+
               <div>
 
-                <h2 className="mb-2 text-lg font-semibold text-[#233B95]">
-                  Simplified Notes
-                </h2>
+                <div
+                  className="
+                  mb-2
 
-                <p className="line-clamp-4 whitespace-pre-wrap text-gray-700">
+                  flex
+                  items-center
+                  gap-2
+                "
+                >
+
+                  <Sparkles
+                    size={18}
+                    className="
+                    text-[#5B7CFA]
+                  "
+                  />
+
+                  <h2
+                    className="
+                    text-lg
+                    font-bold
+
+                    text-[#233B95]
+
+                    dark:text-[#8FB3FF]
+                  "
+                  >
+                    Simplified Notes
+                  </h2>
+
+                </div>
+
+                <p
+                  className="
+                  line-clamp-4
+                  whitespace-pre-wrap
+
+                  leading-7
+
+                  text-gray-700
+
+                  dark:text-gray-300
+                "
+                >
                   {item.output_text}
                 </p>
 
               </div>
+
+              {/* OPEN HINT */}
+
+              <div
+                className="
+                mt-5
+
+                text-right
+              "
+              >
+
+                <span
+                  className="
+                  text-sm
+                  font-medium
+
+                  text-[#5B7CFA]
+                "
+                >
+                  Tap to view full →
+                </span>
+
+              </div>
+
             </div>
           ))
         )}
+
       </section>
+
     </main>
   );
 }
