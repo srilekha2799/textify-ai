@@ -1,37 +1,71 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState }
+from "react";
 
-import { useRouter } from "next/navigation";
+import { useRouter }
+from "next/navigation";
 
-import { supabase } from "@/lib/supabase";
+import { supabase }
+from "@/lib/supabase";
 
 export default function Home() {
 
-  const router = useRouter();
+  const router =
+    useRouter();
+
+  const [showText,
+    setShowText] =
+      useState(false);
 
   useEffect(() => {
 
-    const checkUser = async () => {
+    const checkUser =
+      async () => {
 
-      const {
-        data: { session },
-      } =
-        await supabase.auth.getSession();
+        const {
+          data: { session },
+        } =
+          await supabase.auth.getSession();
 
-      setTimeout(() => {
+        // Reveal animation
+        const revealTimer =
+          setTimeout(() => {
 
-        if (session) {
+            setShowText(true);
 
-          router.push("/homepage");
+          }, 700);
 
-        } else {
+        // Redirect
+        const redirectTimer =
+          setTimeout(() => {
 
-          router.push("/login");
-        }
+            if (session) {
 
-      }, 3500);
-    };
+              router.push(
+                "/homepage"
+              );
+
+            } else {
+
+              router.push(
+                "/login"
+              );
+            }
+
+          }, 3200);
+
+        return () => {
+
+          clearTimeout(
+            revealTimer
+          );
+
+          clearTimeout(
+            redirectTimer
+          );
+        };
+      };
 
     checkUser();
 
@@ -53,65 +87,129 @@ export default function Home() {
       `}
     >
 
+      {/* Background Glow */}
+
       <div
         className={`
+          absolute
+          h-[420px]
+          w-[420px]
+          rounded-full
+
+          bg-[#5B7CFA]/20
+
+          blur-3xl
+        `}
+      />
+
+      <div
+        className={`
+          relative
+          z-10
+
           flex
           flex-col
           items-center
         `}
       >
 
-        {/* Animated T */}
+        {/* Logo */}
 
         <div
           className={`
-            animate-logoPop
-
-            text-[120px]
-            font-black
-            leading-none
-
-            bg-gradient-to-b
-            from-[#8FB3FF]
-            via-[#5B7CFA]
-            to-[#233B95]
-
-            bg-clip-text
-            text-transparent
-
-            drop-shadow-[0_0_30px_rgba(91,124,250,0.6)]
+            relative
+            flex
+            items-center
+            justify-center
           `}
         >
-          T
-        </div>
 
-        {/* Animated Textify */}
+          {/* T */}
 
-        <div className="overflow-hidden">
-
-          <h1
+          <div
             className={`
-              animate-textReveal
+              z-10
 
-              whitespace-nowrap
-
-              text-7xl
+              text-8xl
               font-black
-              tracking-wide
+              tracking-tight
 
               bg-gradient-to-r
-              from-[#8FB3FF]
-              via-[#5B7CFA]
-              to-[#233B95]
+              from-[#5B7CFA]
+              via-[#7C5CFF]
+              to-[#38BDF8]
 
               bg-clip-text
               text-transparent
 
-              opacity-0
+              drop-shadow-[0_0_35px_rgba(91,124,250,0.55)]
+
+              transition-all
+              duration-700
+
+              ${
+                showText
+                  ? `
+                    scale-100
+                  `
+                  : `
+                    scale-[1.25]
+                  `
+              }
             `}
           >
-            Textify
-          </h1>
+            T
+          </div>
+
+          {/* extify Reveal */}
+
+          <div
+            className={`
+              overflow-hidden
+
+              transition-all
+              duration-[1400ms]
+              ease-[cubic-bezier(0.16,1,0.3,1)]
+
+              ${
+                showText
+                  ? `
+                    max-w-[500px]
+                    opacity-100
+                    ml-1
+                  `
+                  : `
+                    max-w-0
+                    opacity-0
+                    ml-0
+                  `
+              }
+            `}
+          >
+
+            <h1
+              className={`
+                whitespace-nowrap
+
+                text-7xl
+                font-black
+                tracking-tight
+
+                bg-gradient-to-r
+                from-[#5B7CFA]
+                via-[#7C5CFF]
+                to-[#38BDF8]
+
+                bg-clip-text
+                text-transparent
+
+                drop-shadow-[0_0_25px_rgba(91,124,250,0.35)]
+              `}
+            >
+              extify
+            </h1>
+
+          </div>
 
         </div>
 
@@ -121,96 +219,34 @@ export default function Home() {
           className={`
             mt-5
 
-            animate-fadeIn
-
-            text-xl
+            text-lg
             font-medium
+            tracking-wide
 
             text-[#233B95]
 
-            opacity-0
+            transition-all
+            duration-1000
 
             dark:text-[#8FB3FF]
+
+            ${
+              showText
+                ? `
+                  translate-y-0
+                  opacity-100
+                `
+                : `
+                  translate-y-5
+                  opacity-0
+                `
+            }
           `}
         >
-          to simplify text
+          simplify smarter
         </p>
 
       </div>
-
-      {/* Animations */}
-
-      <style jsx>{`
-
-        @keyframes logoPop {
-
-          0% {
-            transform: scale(0.2);
-            opacity: 0;
-          }
-
-          60% {
-            transform: scale(1.15);
-            opacity: 1;
-          }
-
-          100% {
-            transform: scale(1);
-            opacity: 1;
-          }
-        }
-
-        @keyframes textReveal {
-
-          0% {
-            width: 0;
-            opacity: 0;
-          }
-
-          100% {
-            width: 100%;
-            opacity: 1;
-          }
-        }
-
-        @keyframes fadeIn {
-
-          0% {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-
-          100% {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        .animate-logoPop {
-
-          animation:
-            logoPop 1.3s ease-out;
-        }
-
-        .animate-textReveal {
-
-          display: inline-block;
-
-          animation:
-            textReveal 1.8s ease forwards;
-
-          animation-delay: 1s;
-        }
-
-        .animate-fadeIn {
-
-          animation:
-            fadeIn 1s ease forwards;
-
-          animation-delay: 2.1s;
-        }
-
-      `}</style>
 
     </main>
   );
