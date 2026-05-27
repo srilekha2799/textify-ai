@@ -13,6 +13,8 @@ import {
   Camera,
   ImagePlus,
   FileText,
+  History,
+  Settings,
 } from "lucide-react";
 
 import SpeechRecognition, {
@@ -247,18 +249,76 @@ export default function Homepage() {
 
   return (
 
-    <main className="min-h-screen bg-[#EEF4FF] transition-all duration-300 dark:bg-[#020817]">
+    <main
+      className="
+      min-h-screen
 
-      {/* Navbar */}
-      <nav className="flex items-center justify-between border-b border-gray-200 bg-white px-8 py-5 shadow-sm dark:border-zinc-800 dark:bg-[#0F172A]">
+      bg-gradient-to-br
+      from-[#020817]
+      via-[#071330]
+      to-[#020817]
 
-        <h1 className="text-3xl font-extrabold tracking-wide text-[#5B7CFA]">
+      text-white
+    "
+    >
 
+      {/* NAVBAR */}
+
+      <nav
+        className="
+        sticky
+        top-0
+        z-50
+
+        flex
+        items-center
+        justify-between
+
+        border-b
+        border-white/10
+
+        bg-[#020817]/80
+        px-4
+        py-4
+
+        backdrop-blur-xl
+
+        md:px-8
+      "
+      >
+
+        {/* LOGO */}
+
+        <h1
+          className="
+          text-3xl
+          font-black
+
+          md:text-5xl
+
+          bg-gradient-to-r
+          from-[#8FB3FF]
+          via-[#5B7CFA]
+          to-[#233B95]
+
+          bg-clip-text
+          text-transparent
+        "
+        >
           Textify
-
         </h1>
 
-        <div className="flex items-center gap-4">
+        {/* DESKTOP NAV */}
+
+        <div
+          className="
+          hidden
+          items-center
+          gap-4
+
+          md:flex
+        "
+        >
 
           <button
             onClick={() =>
@@ -266,10 +326,126 @@ export default function Homepage() {
                 "/history"
               )
             }
-            className="rounded-2xl border border-gray-300 bg-white px-5 py-2 font-medium text-gray-700 transition hover:bg-gray-100 dark:border-zinc-700 dark:bg-[#111827] dark:text-white dark:hover:bg-zinc-800"
+
+            className="
+            rounded-full
+
+            border
+            border-white/10
+
+            bg-white/5
+
+            px-6
+            py-3
+
+            font-medium
+
+            transition-all
+            duration-300
+
+            hover:bg-white/10
+          "
+          >
+            History
+          </button>
+
+          <button
+            onClick={() =>
+              router.push(
+                "/settings"
+              )
+            }
+
+            className="
+            rounded-full
+
+            border
+            border-white/10
+
+            bg-white/5
+
+            px-6
+            py-3
+
+            font-medium
+
+            transition-all
+            duration-300
+
+            hover:bg-white/10
+          "
+          >
+            Settings
+          </button>
+
+          <button
+            onClick={
+              handleLogout
+            }
+
+            className="
+            rounded-full
+
+            bg-gradient-to-r
+            from-[#5B7CFA]
+            to-[#4A68E8]
+
+            px-6
+            py-3
+
+            font-semibold
+
+            transition-all
+            duration-300
+
+            hover:scale-105
+          "
+          >
+            Logout
+          </button>
+
+        </div>
+
+        {/* MOBILE NAV */}
+
+        <div
+          className="
+          flex
+          items-center
+          gap-3
+
+          md:hidden
+        "
+        >
+
+          <button
+            onClick={() =>
+              router.push(
+                "/history"
+              )
+            }
+
+            className="
+            flex
+            h-11
+            w-11
+            items-center
+            justify-center
+
+            rounded-full
+
+            border
+            border-white/10
+
+            bg-white/5
+
+            text-[#8FB3FF]
+          "
           >
 
-            History
+            <History
+              size={20}
+            />
 
           </button>
 
@@ -279,75 +455,150 @@ export default function Homepage() {
                 "/settings"
               )
             }
-            className="rounded-2xl border border-gray-300 bg-white px-5 py-2 font-medium text-gray-700 transition hover:bg-gray-100 dark:border-zinc-700 dark:bg-[#111827] dark:text-white dark:hover:bg-zinc-800"
+
+            className="
+            flex
+            h-11
+            w-11
+            items-center
+            justify-center
+
+            rounded-full
+
+            border
+            border-white/10
+
+            bg-white/5
+
+            text-[#8FB3FF]
+          "
           >
 
-            Settings
-
-          </button>
-
-          <button
-            onClick={
-              handleLogout
-            }
-            className="rounded-2xl bg-[#5B7CFA] px-5 py-2 font-medium text-white transition hover:bg-[#4A68E8]"
-          >
-
-            Logout
+            <Settings
+              size={20}
+            />
 
           </button>
 
         </div>
+
       </nav>
 
-      {/* Main */}
-      <section className="mx-auto flex max-w-7xl flex-col gap-8 px-6 py-10 lg:flex-row">
+      {/* MAIN CONTENT */}
 
-        {/* Input Card */}
-        <div className="flex-1 rounded-[32px] bg-white p-8 shadow-2xl dark:bg-[#0F172A]">
+      <section
+        className="
+        mx-auto
 
-          <h2 className="mb-6 text-3xl font-bold text-[#233B95] dark:text-[#8FB3FF]">
+        flex
+        max-w-7xl
+        flex-col
+        gap-6
 
+        px-4
+        py-6
+
+        md:px-8
+        md:py-10
+
+        lg:flex-row
+      "
+      >
+
+        {/* INPUT SECTION */}
+
+        <div
+          className="
+          flex-1
+
+          rounded-[32px]
+
+          border
+          border-white/10
+
+          bg-white/5
+
+          p-5
+
+          shadow-[0_0_40px_rgba(91,124,250,0.12)]
+
+          backdrop-blur-xl
+
+          md:p-8
+        "
+        >
+
+          <h2
+            className="
+            mb-5
+
+            text-2xl
+            font-bold
+
+            text-[#8FB3FF]
+
+            md:text-3xl
+          "
+          >
             Enter Text
-
           </h2>
 
-          {/* Textarea */}
+          {/* TEXTAREA */}
+
           <div className="relative">
 
             <textarea
               placeholder="Enter text..."
+
               value={inputText}
+
               onChange={(e) =>
                 setInputText(
                   e.target.value
                 )
               }
+
               className="
-              h-80
+              h-52
               w-full
+
               resize-none
+
               rounded-3xl
+
               border
-              border-gray-300
-              bg-[#F8FAFC]
+              border-white/10
+
+              bg-[#0B1120]
+
               p-5
-              pr-32
-              text-lg
-              text-gray-800
+              pr-28
+
+              text-base
+              text-white
+
               outline-none
-              transition
+
+              transition-all
+
+              placeholder:text-zinc-500
+
               focus:border-[#5B7CFA]
 
-              dark:border-zinc-700
-              dark:bg-[#111827]
-              dark:text-white
-              dark:placeholder:text-zinc-500
+              md:h-72
+              md:text-lg
             "
             />
 
-            {/* Upload Menu */}
-            <div className="absolute bottom-4 right-16">
+            {/* UPLOAD */}
+
+            <div
+              className="
+              absolute
+              bottom-4
+              right-16
+            "
+            >
 
               <button
                 onClick={() =>
@@ -355,17 +606,24 @@ export default function Homepage() {
                     !showUploadMenu
                   )
                 }
+
                 className="
                 flex
-                h-10
-                w-10
+                h-11
+                w-11
                 items-center
                 justify-center
+
                 rounded-full
+
                 bg-[#5B7CFA]
+
                 text-white
-                transition
-                hover:bg-[#4A68E8]
+
+                transition-all
+                duration-300
+
+                hover:scale-105
               "
               >
 
@@ -375,7 +633,8 @@ export default function Homepage() {
 
               </button>
 
-              {/* Dropdown */}
+              {/* DROPDOWN */}
+
               {showUploadMenu && (
 
                 <div
@@ -383,40 +642,47 @@ export default function Homepage() {
                   absolute
                   bottom-14
                   right-0
+
                   flex
                   w-52
                   flex-col
                   gap-2
-                  rounded-2xl
-                  border
-                  border-gray-200
-                  bg-white
-                  p-3
-                  shadow-2xl
 
-                  dark:border-zinc-700
-                  dark:bg-[#111827]
+                  rounded-2xl
+
+                  border
+                  border-white/10
+
+                  bg-[#0B1120]
+
+                  p-3
+
+                  shadow-2xl
                 "
                 >
 
-                  {/* Camera */}
+                  {/* CAMERA */}
+
                   <label
                     className="
                     flex
                     cursor-pointer
                     items-center
                     gap-3
+
                     rounded-xl
+
                     px-3
                     py-3
+
                     text-sm
                     font-medium
-                    text-gray-700
-                    transition
-                    hover:bg-gray-100
 
-                    dark:text-white
-                    dark:hover:bg-zinc-800
+                    text-white
+
+                    transition-all
+
+                    hover:bg-white/10
                   "
                   >
 
@@ -453,24 +719,28 @@ export default function Homepage() {
 
                   </label>
 
-                  {/* Image */}
+                  {/* IMAGE */}
+
                   <label
                     className="
                     flex
                     cursor-pointer
                     items-center
                     gap-3
+
                     rounded-xl
+
                     px-3
                     py-3
+
                     text-sm
                     font-medium
-                    text-gray-700
-                    transition
-                    hover:bg-gray-100
 
-                    dark:text-white
-                    dark:hover:bg-zinc-800
+                    text-white
+
+                    transition-all
+
+                    hover:bg-white/10
                   "
                   >
 
@@ -507,23 +777,27 @@ export default function Homepage() {
                   </label>
 
                   {/* PDF */}
+
                   <label
                     className="
                     flex
                     cursor-pointer
                     items-center
                     gap-3
+
                     rounded-xl
+
                     px-3
                     py-3
+
                     text-sm
                     font-medium
-                    text-gray-700
-                    transition
-                    hover:bg-gray-100
 
-                    dark:text-white
-                    dark:hover:bg-zinc-800
+                    text-white
+
+                    transition-all
+
+                    hover:bg-white/10
                   "
                   >
 
@@ -561,9 +835,11 @@ export default function Homepage() {
 
                 </div>
               )}
+
             </div>
 
-            {/* Mic */}
+            {/* MIC */}
+
             {mounted &&
               browserSupportsSpeechRecognition && (
 
@@ -588,12 +864,26 @@ export default function Homepage() {
                   }
                 }}
 
-                className={`absolute bottom-4 right-4 flex h-10 w-10 items-center justify-center rounded-full transition
+                className={`
+
+                absolute
+                bottom-4
+                right-4
+
+                flex
+                h-11
+                w-11
+                items-center
+                justify-center
+
+                rounded-full
+
+                transition-all
 
                 ${
                   listening
-                    ? "bg-red-500 text-white animate-pulse"
-                    : "bg-[#5B7CFA] text-white"
+                    ? "bg-red-500 animate-pulse"
+                    : "bg-[#5B7CFA]"
                 }
                 `}
               >
@@ -610,15 +900,43 @@ export default function Homepage() {
 
               </button>
             )}
+
           </div>
 
-          {/* Simplify */}
+          {/* BUTTON */}
+
           <button
             onClick={
               handleSimplify
             }
+
             disabled={loading}
-            className="mt-7 w-full rounded-3xl bg-[#5B7CFA] py-4 text-lg font-semibold text-white transition hover:bg-[#4A68E8] disabled:opacity-70"
+
+            className="
+            mt-6
+
+            w-full
+
+            rounded-3xl
+
+            bg-gradient-to-r
+            from-[#5B7CFA]
+            to-[#4A68E8]
+
+            py-4
+
+            text-lg
+            font-semibold
+
+            text-white
+
+            transition-all
+            duration-300
+
+            hover:scale-[1.02]
+
+            disabled:opacity-70
+          "
           >
 
             {loading
@@ -628,44 +946,109 @@ export default function Homepage() {
               : "Simplify Text"}
 
           </button>
+
         </div>
 
-        {/* Output Card */}
-        <div className="flex-1 rounded-[32px] bg-white p-8 shadow-2xl dark:bg-[#0F172A]">
+        {/* OUTPUT SECTION */}
 
-          <h2 className="mb-6 text-3xl font-bold text-[#233B95] dark:text-[#8FB3FF]">
+        <div
+          className="
+          flex-1
 
+          rounded-[32px]
+
+          border
+          border-white/10
+
+          bg-white/5
+
+          p-5
+
+          shadow-[0_0_40px_rgba(91,124,250,0.12)]
+
+          backdrop-blur-xl
+
+          md:p-8
+        "
+        >
+
+          <h2
+            className="
+            mb-5
+
+            text-2xl
+            font-bold
+
+            text-[#8FB3FF]
+
+            md:text-3xl
+          "
+          >
             AI Response
-
           </h2>
 
-          <div className="h-80 overflow-y-auto rounded-3xl border border-gray-300 bg-[#F8FAFC] p-5 dark:border-zinc-700 dark:bg-[#111827]">
+          <div
+            className="
+            h-52
+
+            overflow-y-auto
+
+            rounded-3xl
+
+            border
+            border-white/10
+
+            bg-[#0B1120]
+
+            p-5
+
+            md:h-72
+          "
+          >
 
             {outputText ? (
 
-              <p className="whitespace-pre-wrap leading-8 text-gray-700 dark:text-gray-200">
+              <p
+                className="
+                whitespace-pre-wrap
 
+                leading-8
+
+                text-gray-200
+              "
+              >
                 {outputText}
-
               </p>
 
             ) : (
 
-              <div className="flex h-full items-center justify-center">
+              <div
+                className="
+                flex
+                h-full
+                items-center
+                justify-center
+              "
+              >
 
-                <p className="text-gray-400 dark:text-zinc-500">
-
-                  AI simplified text will appear here...
-
+                <p
+                  className="
+                  text-zinc-500
+                "
+                >
+                  AI simplified text
+                  will appear here...
                 </p>
 
               </div>
-
             )}
 
           </div>
+
         </div>
+
       </section>
+
     </main>
   );
 }
