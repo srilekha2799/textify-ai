@@ -2,44 +2,36 @@
 
 import { useEffect } from "react";
 
-import { useRouter }
-from "next/navigation";
+import { useRouter } from "next/navigation";
 
-import { supabase }
-from "@/lib/supabase";
+import { supabase } from "@/lib/supabase";
 
 export default function Home() {
 
-  const router =
-    useRouter();
+  const router = useRouter();
 
   useEffect(() => {
 
-    const checkUser =
-      async () => {
+    const checkUser = async () => {
 
-        const {
-          data: { session },
-        } =
-          await supabase.auth.getSession();
+      const {
+        data: { session },
+      } =
+        await supabase.auth.getSession();
 
-        setTimeout(() => {
+      setTimeout(() => {
 
-          if (session) {
+        if (session) {
 
-            router.push(
-              "/homepage"
-            );
+          router.push("/homepage");
 
-          } else {
+        } else {
 
-            router.push(
-              "/login"
-            );
-          }
+          router.push("/login");
+        }
 
-        }, 3500);
-      };
+      }, 3500);
+    };
 
     checkUser();
 
@@ -48,71 +40,38 @@ export default function Home() {
   return (
 
     <main
-      className="
-      flex
-      min-h-screen
-      items-center
-      justify-center
+      className={`
+        flex
+        min-h-screen
+        items-center
+        justify-center
+        overflow-hidden
 
-      overflow-hidden
+        bg-[#EEF4FF]
 
-      bg-[#EEF4FF]
-
-      dark:bg-[#020817]
-    "
+        dark:bg-[#020817]
+      `}
     >
 
       <div
-        className="
-        flex
-        flex-col
-        items-center
-      "
+        className={`
+          flex
+          flex-col
+          items-center
+        `}
       >
 
-        {/* BIG T */}
+        {/* Animated T */}
 
         <div
-          className="
-          animate-logoPop
+          className={`
+            animate-logoPop
 
-          text-[120px]
-          font-black
-          leading-none
-
-          bg-gradient-to-b
-          from-[#8FB3FF]
-          via-[#5B7CFA]
-          to-[#233B95]
-
-          bg-clip-text
-          text-transparent
-
-          drop-shadow-[0_0_30px_rgba(91,124,250,0.6)]
-        "
-        >
-          T
-        </div>
-
-        {/* TEXTIFY */}
-
-        <div
-          className="
-          overflow-hidden
-        "
-        >
-
-          <h1
-            className="
-            animate-textReveal
-
-            whitespace-nowrap
-
-            text-7xl
+            text-[120px]
             font-black
-            tracking-wide
+            leading-none
 
-            bg-gradient-to-r
+            bg-gradient-to-b
             from-[#8FB3FF]
             via-[#5B7CFA]
             to-[#233B95]
@@ -120,31 +79,59 @@ export default function Home() {
             bg-clip-text
             text-transparent
 
-            opacity-0
-          "
+            drop-shadow-[0_0_30px_rgba(91,124,250,0.6)]
+          `}
+        >
+          T
+        </div>
+
+        {/* Animated Textify */}
+
+        <div className="overflow-hidden">
+
+          <h1
+            className={`
+              animate-textReveal
+
+              whitespace-nowrap
+
+              text-7xl
+              font-black
+              tracking-wide
+
+              bg-gradient-to-r
+              from-[#8FB3FF]
+              via-[#5B7CFA]
+              to-[#233B95]
+
+              bg-clip-text
+              text-transparent
+
+              opacity-0
+            `}
           >
             Textify
           </h1>
 
         </div>
 
-        {/* TAGLINE */}
+        {/* Tagline */}
 
         <p
-          className="
-          mt-5
+          className={`
+            mt-5
 
-          animate-fadeIn
+            animate-fadeIn
 
-          text-xl
-          font-medium
+            text-xl
+            font-medium
 
-          text-[#233B95]
+            text-[#233B95]
 
-          opacity-0
+            opacity-0
 
-          dark:text-[#8FB3FF]
-        "
+            dark:text-[#8FB3FF]
+          `}
         >
           to simplify text
         </p>
