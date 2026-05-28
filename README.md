@@ -42,10 +42,7 @@ AI & Utilities
 ---
 
 ## 📸 Screenshots
-
-Add your screenshots here ✨
-
-![Homepage](screenshots/homepagelightmode.jpeg)
+![Homepage](screenshots/logo.jpeg)
 ![Dark Mode](screenshots/homepage.jpeg)
 
 ---
