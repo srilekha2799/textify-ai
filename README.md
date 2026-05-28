@@ -45,8 +45,8 @@ AI & Utilities
 
 Add your screenshots here ✨
 
-![Homepage](./screenshots/homepage.png)
-![Dark Mode](./screenshots/darkmode.png)
+![Homepage](screenshots/homepagelightmode.jpeg)
+![Dark Mode](screenshots/homepage.jpeg)
 
 ---
 
