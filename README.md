@@ -1,4 +1,4 @@
-✨## Textify AI
+# ✨ Textify AI
 
 Textify AI is an AI-powered web application that simplifies complex text into easy-to-understand notes using modern AI technologies.
 
@@ -6,7 +6,7 @@ Built with Next.js, Supabase, and a beautiful responsive UI supporting both Ligh
 
 ---
 
-🚀# Features
+## 🚀 Features
 
 - ✍️ Simplify complex text into readable notes
 - 🎤 Voice-to-text input using speech recognition
@@ -22,7 +22,7 @@ Built with Next.js, Supabase, and a beautiful responsive UI supporting both Ligh
 
 ---
 
-🛠️ Tech Stack
+## 🛠️ Tech Stack
 
 Frontend
 
@@ -41,7 +41,7 @@ AI & Utilities
 
 ---
 
-📸 Screenshots
+## 📸 Screenshots
 
 Add your screenshots here ✨
 
@@ -50,7 +50,7 @@ Add your screenshots here ✨
 
 ---
 
-⚙️ Environment Variables
+## ⚙️ Environment Variables
 
 Create a ".env.local" file and add:
 
@@ -59,7 +59,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 
 ---
 
-🔒 Security
+## 🔒 Security
 
 This project uses:
 
@@ -71,7 +71,7 @@ This project uses:
 
 ---
 
-📂 Installation
+## 📂 Installation
 
 Clone the repository:
 
@@ -91,7 +91,7 @@ npm run dev
 
 ---
 
-🌐 Deployment
+## 🌐 Deployment
 
 This project is deployed using:
 
@@ -100,7 +100,7 @@ This project is deployed using:
 
 ---
 
-💡 Future Improvements
+## 💡 Future Improvements
 
 - Multi-language support
 - Export notes as PDF
@@ -110,12 +110,12 @@ This project is deployed using:
 
 ---
 
-👩‍💻 Author
+## 👩‍💻 Author
 
 Built by Srilekha
 
 ---
 
-⭐ Support
+## ⭐ Support
 
 If you like this project, consider giving it a ⭐ on GitHub.
