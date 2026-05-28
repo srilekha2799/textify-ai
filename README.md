@@ -51,8 +51,8 @@ AI & Utilities
 
 Create a ".env.local" file and add:
 
-NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+NEXT_PUBLIC_SUPABASE_URL=https://mlpptmatynhquniwwbpu.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=sb_publishable_ActilT4QOTeSRZrK_SJqog_jFxZyvpg
 
 ---
 
@@ -72,7 +72,7 @@ This project uses:
 
 Clone the repository:
 
-git clone https://github.com/your-username/textify-ai.git
+git clone https://github.com/srilekha2799/textify-ai
 
 Go into the project folder:
 
