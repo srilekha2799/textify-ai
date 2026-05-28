@@ -8,6 +8,13 @@ import { supabase } from "@/lib/supabase";
 
 import { useTheme } from "next-themes";
 
+import {
+  ArrowLeft,
+  MoonStar,
+  User,
+  LogOut,
+} from "lucide-react";
+
 export default function SettingsPage() {
 
   const router = useRouter();
@@ -71,25 +78,84 @@ export default function SettingsPage() {
       className="
       min-h-screen
 
-      bg-[#EEF4FF]
+      bg-[#F4F7FF]
 
-      p-6
+      px-4
+      py-6
 
       transition-all
       duration-300
 
       dark:bg-[#020817]
+
+      sm:px-6
+      lg:px-8
     "
     >
 
-      {/* Header */}
+      {/* BACKGROUND GLOW */}
+
       <div
         className="
+        pointer-events-none
+        fixed
+        inset-0
+        overflow-hidden
+      "
+      >
+
+        <div
+          className="
+          absolute
+          top-[-120px]
+          left-[-120px]
+
+          h-[320px]
+          w-[320px]
+
+          rounded-full
+
+          bg-[#7C5CFF]/10
+
+          blur-3xl
+
+          dark:bg-[#5B7CFA]/20
+        "
+        />
+
+        <div
+          className="
+          absolute
+          bottom-[-140px]
+          right-[-100px]
+
+          h-[320px]
+          w-[320px]
+
+          rounded-full
+
+          bg-[#5B7CFA]/10
+
+          blur-3xl
+
+          dark:bg-[#7C5CFF]/20
+        "
+        />
+
+      </div>
+
+      {/* HEADER */}
+
+      <div
+        className="
+        relative
+        z-10
+
         mx-auto
         mb-8
 
         flex
-        max-w-3xl
+        max-w-4xl
         items-center
         justify-between
       "
@@ -99,12 +165,14 @@ export default function SettingsPage() {
 
           <h1
             className="
-            text-4xl
+            text-3xl
             font-extrabold
 
             text-[#233B95]
 
-            dark:text-[#8FB3FF]
+            dark:text-white
+
+            sm:text-4xl
           "
           >
             Settings
@@ -115,9 +183,9 @@ export default function SettingsPage() {
             mt-1
             text-sm
 
-            text-gray-500
+            text-[#6B7280]
 
-            dark:text-zinc-400
+            dark:text-[#94A3B8]
           "
           >
             Personalize your Textify experience ✨
@@ -125,132 +193,165 @@ export default function SettingsPage() {
 
         </div>
 
+        {/* BACK BUTTON */}
+
         <button
           onClick={() =>
             router.push("/homepage")
           }
 
           className="
+          flex
+          items-center
+          gap-2
+
           rounded-2xl
 
           bg-gradient-to-r
           from-[#5B7CFA]
-          to-[#6D8BFF]
+          to-[#7C5CFF]
 
           px-5
           py-3
 
-          font-medium
+          text-sm
+          font-semibold
           text-white
+
+          shadow-[0_8px_25px_rgba(91,124,250,0.35)]
 
           transition-all
           duration-300
 
           hover:scale-105
-          hover:shadow-lg
-          hover:shadow-[#5B7CFA]/30
         "
         >
+
+          <ArrowLeft size={18} />
+
           Back
+
         </button>
 
       </div>
 
-      {/* Settings Card */}
+      {/* SETTINGS CONTENT */}
+
       <section
         className="
-        mx-auto
+        relative
+        z-10
 
+        mx-auto
         flex
-        max-w-3xl
+        max-w-4xl
         flex-col
         gap-6
-
-        rounded-[32px]
-
-        border
-        border-gray-200
-
-        bg-white
-
-        p-8
-
-        shadow-2xl
-
-        transition-all
-        duration-300
-
-        dark:border-zinc-800
-        dark:bg-[#0F172A]
       "
       >
 
-        {/* User Profile */}
+        {/* USER PROFILE */}
+
         <div
           className="
-          rounded-3xl
+          rounded-[30px]
 
           border
-          border-gray-200
+          border-[#DCE6FF]
 
-          bg-[#F8FAFC]
+          bg-white/90
 
           p-6
 
-          transition-all
+          shadow-[0_10px_35px_rgba(91,124,250,0.10)]
 
-          dark:border-zinc-700
-          dark:bg-[#111827]
+          backdrop-blur-xl
+
+          transition-all
+          duration-300
+
+          dark:border-white/10
+          dark:bg-[#0F172A]/80
         "
         >
 
-          <h2
+          <div
             className="
-            mb-2
+            mb-4
 
-            text-2xl
-            font-bold
-
-            text-[#233B95]
-
-            dark:text-[#8FB3FF]
+            flex
+            items-center
+            gap-3
           "
           >
-            User Profile
-          </h2>
 
-          <p
-            className="
-            text-sm
+            <div
+              className="
+              rounded-xl
 
-            text-gray-500
+              bg-gradient-to-r
+              from-[#5B7CFA]
+              to-[#7C5CFF]
 
-            dark:text-zinc-400
-          "
-          >
-            Logged in as:
-          </p>
+              p-3
+
+              text-white
+            "
+            >
+
+              <User size={20} />
+
+            </div>
+
+            <div>
+
+              <h2
+                className="
+                text-2xl
+                font-bold
+
+                text-[#233B95]
+
+                dark:text-white
+              "
+              >
+                User Profile
+              </h2>
+
+              <p
+                className="
+                text-sm
+
+                text-[#6B7280]
+
+                dark:text-[#94A3B8]
+              "
+              >
+                Logged in account
+              </p>
+
+            </div>
+
+          </div>
 
           <div
             className="
-            mt-4
-
             rounded-2xl
 
             border
-            border-gray-200
+            border-[#DCE6FF]
 
-            bg-white
+            bg-[#F8FAFF]
 
             p-4
 
-            text-gray-700
+            text-[#475569]
 
             shadow-sm
 
-            dark:border-zinc-700
-            dark:bg-[#0B1220]
-            dark:text-white
+            dark:border-white/10
+            dark:bg-[#020817]
+            dark:text-[#CBD5E1]
           "
           >
 
@@ -260,60 +361,94 @@ export default function SettingsPage() {
 
         </div>
 
-        {/* Dark Mode */}
+        {/* DARK MODE */}
+
         <div
           className="
           flex
           items-center
           justify-between
 
-          rounded-3xl
+          rounded-[30px]
 
           border
-          border-gray-200
+          border-[#DCE6FF]
 
-          bg-[#F8FAFC]
+          bg-white/90
 
           p-6
 
-          transition-all
+          shadow-[0_10px_35px_rgba(91,124,250,0.10)]
 
-          dark:border-zinc-700
-          dark:bg-[#111827]
+          backdrop-blur-xl
+
+          transition-all
+          duration-300
+
+          dark:border-white/10
+          dark:bg-[#0F172A]/80
         "
         >
 
-          <div>
+          <div
+            className="
+            flex
+            items-center
+            gap-3
+          "
+          >
 
-            <h2
+            <div
               className="
-              text-2xl
-              font-bold
+              rounded-xl
 
-              text-[#233B95]
+              bg-gradient-to-r
+              from-[#5B7CFA]
+              to-[#7C5CFF]
 
-              dark:text-[#8FB3FF]
+              p-3
+
+              text-white
             "
             >
-              Dark Mode
-            </h2>
 
-            <p
-              className="
-              mt-1
-              text-sm
+              <MoonStar size={20} />
 
-              text-gray-500
+            </div>
 
-              dark:text-zinc-400
-            "
-            >
-              Switch between light and dark theme
-            </p>
+            <div>
+
+              <h2
+                className="
+                text-2xl
+                font-bold
+
+                text-[#233B95]
+
+                dark:text-white
+              "
+              >
+                Dark Mode
+              </h2>
+
+              <p
+                className="
+                text-sm
+
+                text-[#6B7280]
+
+                dark:text-[#94A3B8]
+              "
+              >
+                Switch between light and dark theme
+              </p>
+
+            </div>
 
           </div>
 
-          {/* Toggle */}
+          {/* TOGGLE */}
+
           <button
             onClick={() =>
               setTheme(
@@ -341,7 +476,7 @@ export default function SettingsPage() {
 
               ${
                 theme === "dark"
-                  ? "bg-gradient-to-r from-[#5B7CFA] to-[#6D8BFF]"
+                  ? "bg-gradient-to-r from-[#5B7CFA] to-[#7C5CFF]"
                   : "bg-gray-300"
               }
             `}
@@ -378,42 +513,46 @@ export default function SettingsPage() {
               `}
             >
 
-              {theme === "dark"
-                ? "🌙"
-                : "☀️"}
-
             </div>
 
           </button>
 
         </div>
 
-        {/* Logout */}
+        {/* LOGOUT */}
+
         <button
           onClick={handleLogout}
 
           className="
-          rounded-2xl
+          flex
+          items-center
+          justify-center
+          gap-3
+
+          rounded-[24px]
 
           bg-gradient-to-r
           from-[#5B7CFA]
-          to-[#6D8BFF]
+          to-[#7C5CFF]
 
-          px-5
+          px-6
           py-4
 
           text-lg
           font-semibold
           text-white
 
+          shadow-[0_10px_35px_rgba(91,124,250,0.30)]
+
           transition-all
           duration-300
 
           hover:scale-[1.02]
-          hover:shadow-lg
-          hover:shadow-[#5B7CFA]/30
         "
         >
+
+          <LogOut size={20} />
 
           Logout
 
