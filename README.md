@@ -1,4 +1,4 @@
-✨ Textify AI
+✨## Textify AI
 
 Textify AI is an AI-powered web application that simplifies complex text into easy-to-understand notes using modern AI technologies.
 
@@ -6,7 +6,7 @@ Built with Next.js, Supabase, and a beautiful responsive UI supporting both Ligh
 
 ---
 
-🚀 Features
+🚀# Features
 
 - ✍️ Simplify complex text into readable notes
 - 🎤 Voice-to-text input using speech recognition
